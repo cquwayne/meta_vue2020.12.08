@@ -258,7 +258,7 @@ export default {
         vm.postSceneVisible = true
         localStorage.setItem('sceneDataList', vm.sceneDataList)
       } else if (localStorage.getItem('sceneDataList') !== undefined) {
-        console.log(localStorage.getItem('sceneDataList'))
+        // console.log(localStorage.getItem('sceneDataList'))
         if (localStorage.getItem('sceneDataList') !== null) {
           vm.postSceneVisible = true
           vm.sceneDataList = JSON.parse(localStorage.getItem('sceneDataList'))
@@ -389,7 +389,8 @@ export default {
     },
     handleSceneDrawer (row) {
       if (row) {
-        // console.log(row)
+        console.log(this.categories)
+        console.log(row)
         this.postForm.sceneData = row
         this.postForm.sceneData['id'] = row['id']
         // this.postForm.sceneData['title'] = row['title']

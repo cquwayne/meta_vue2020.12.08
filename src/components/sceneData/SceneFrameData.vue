@@ -8,23 +8,23 @@
             <el-row>
               <el-form-item class="line">
                 <el-col>
-                  <el-tag effect="dark" type="success">采集描述</el-tag>
+                  <el-tag effect="dark" type="success">工艺描述</el-tag>
                 </el-col>
               </el-form-item>
-<!--              <div class="line right">-->
-<!--                <el-form-item class="line">-->
-<!--                  <el-col>-->
-<!--                    <el-input v-model="outputFrameData.collectionDescription" placeholder="请输入采集条件" class="my-input"></el-input>-->
-<!--                  </el-col>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item class="line">-->
-<!--                  <el-col>-->
-<!--                    <el-button type="text" @click="handleClick">-->
-<!--                      <i class="el-icon-circle-plus-outline"></i> 新增采集条件-->
-<!--                    </el-button>-->
-<!--                  </el-col>-->
-<!--                </el-form-item>-->
-<!--              </div>-->
+              <div class="line right">
+                <el-form-item class="line">
+                  <el-col>
+                    <el-input v-model="outputFrameData.collectionDescription" placeholder="请输入工艺描述" class="my-input"></el-input>
+                  </el-col>
+                </el-form-item>
+                <el-form-item class="line">
+                  <el-col>
+                    <el-button type="text" @click="handleClick">
+                      <i class="el-icon-circle-plus-outline"></i> 新增工艺描述
+                    </el-button>
+                  </el-col>
+                </el-form-item>
+              </div>
             </el-row>
           </el-form>
         </div>
@@ -38,29 +38,35 @@
     </el-header>
     <el-main>
       <el-tabs v-model="activeName">
-        <el-tab-pane :label="tabPaneList[0].label" name="1">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['materialDataList']?frame['materialDataList']:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
-        </el-tab-pane>
-        <el-tab-pane :label="tabPaneList[1].label" name="2">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['energyDataList']?frame['energyDataList']:null" :label="tabPaneList[1].label" :tableName="tabPaneList[1].tableName"></Pane>
-        </el-tab-pane>
+        <!--工艺参数-->
         <el-tab-pane :label="tabPaneList[2].label" name="3">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['keyParameterDataList']?frame['keyParameterDataList']:null" :label="tabPaneList[2].label" :tableName="tabPaneList[2].tableName"></Pane>
         </el-tab-pane>
+        <!--设备-->
         <el-tab-pane :label="tabPaneList[3].label" name="4">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['deviceDataList']?frame['deviceDataList']:null" :label="tabPaneList[3].label" :tableName="tabPaneList[3].tableName"></Pane>
         </el-tab-pane>
+        <!--功能单元-->
         <el-tab-pane :label="tabPaneList[4].label" name="5">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['functionUnitDataList']?frame['functionUnitDataList']:null" :label="tabPaneList[4].label" :tableName="tabPaneList[4].tableName"></Pane>
         </el-tab-pane>
+        <!--工艺对象/辅料-->
+        <el-tab-pane :label="tabPaneList[0].label" name="1">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['materialDataList']?frame['materialDataList']:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
+        </el-tab-pane>
+        <!--能源-->
+        <el-tab-pane :label="tabPaneList[1].label" name="2">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['energyDataList']?frame['energyDataList']:null" :label="tabPaneList[1].label" :tableName="tabPaneList[1].tableName"></Pane>
+        </el-tab-pane>
+        <!--环境影响-->
         <el-tab-pane :label="tabPaneList[5].label" name="6">
           <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
                 :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['envLoadDataList']:null" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>
         </el-tab-pane>
-        <el-tab-pane :label="tabPaneList[6].label" name="7">
-          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
-                :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['outputPartDataList']:null" :label="tabPaneList[6].label" :tableName="tabPaneList[6].tableName"></Pane>
-        </el-tab-pane>
+<!--        <el-tab-pane :label="tabPaneList[6].label" name="7">-->
+<!--          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"-->
+<!--                :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['outputPartDataList']:null" :label="tabPaneList[6].label" :tableName="tabPaneList[6].tableName"></Pane>-->
+<!--        </el-tab-pane>-->
       </el-tabs>
     </el-main>
   </el-container>
@@ -119,7 +125,7 @@ export default {
           tableName: 'deviceData'
         },
         {
-          label: '功能单位',
+          label: '功能单元',
           name: '5',
           tableName: 'functionUnitData'
         },
