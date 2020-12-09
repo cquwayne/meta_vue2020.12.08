@@ -1,7 +1,7 @@
 <template>
   <el-row class="Header">
     <el-col :span="12">
-      <router-link :to="{name: 'Home'}">基础制造工艺资源环境负荷数据库</router-link>
+      <router-link :to="{name: 'HomeIndex'}">基础制造工艺资源环境负荷数据库</router-link>
     </el-col>
     <el-col :span="12" style="text-align:right" v-if="auth">
       <router-link :to="{name: 'User'}">{{auth['userName']}}</router-link>

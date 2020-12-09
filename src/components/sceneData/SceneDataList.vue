@@ -9,7 +9,7 @@
         </el-col>
         <el-col :span="6" style="text-align:right">
           <el-button type="primary" @click="handleSceneDrawer(null)" :disabled="postSceneVisible">
-            <i class="el-icon-circle-plus-outline"></i>新增负荷数据
+            <i class="el-icon-circle-plus-outline"></i>新增工艺场景
           </el-button>     <!--以弹窗（drawer抽屉）的形式新增工艺场景-->
         </el-col>
       </el-row>
@@ -34,13 +34,13 @@
             {{scope.row['category']['title']}}
           </template>
         </el-table-column>
-<!--        <el-table-column-->
-<!--          label="场景描述"-->
-<!--          width="200">-->
-<!--          <template slot-scope="scope">-->
-<!--            {{scope.row['description']}}-->
-<!--          </template>-->
-<!--        </el-table-column>-->
+        <el-table-column
+          label="功能单元"
+          width="200">
+          <template slot-scope="scope">
+            {{scope.row['description']}}
+          </template>
+        </el-table-column>
         <el-table-column
           label="创建时间"
           width="150">
@@ -188,9 +188,11 @@ export default {
     categories () {
       return this.$store.state.categories[0].children
     },
+    // 将baseTableMa中的“材料”赋给materialOptions
     materialOptions () {
       return this.$store.state.baseTableMap['material']
     },
+    // 将baseTableMa中的“设备”赋给deviceOptions
     deviceOptions () {
       return this.$store.state.baseTableMap['device']
     }
@@ -245,11 +247,17 @@ export default {
       }
     }
   },
+  // beforeRouteEnter是新进入的一个路由，比如进入/login登录界面，会触发beforeRouteEnter这个钩子；
+  // 而beforeRouteUpdate是路由更新时触发，从主页进入登录界面不会触发这个钩子函数，一个父路由下的子路由跳转会触发这个钩子函数。
   beforeRouteEnter (to, from, next) {
+    // 因为当钩子执行前，组件实例还没被创建
+    // vm 就是当前组件的实例相当于上面的 this，所以在 next 方法里你就可以把 vm 当 this 来用了。
     next(vm => {
       // let categoryId = to.query['categoryId'] ? to.query['categoryId'] : 1
       let query = {
-        categoryId: to.query['categoryId'] ? to.query['categoryId'] : 1,
+        // 三目运算符
+        categoryId: to.query['categoryId'] ? to.query.categoryId : to.params.categoryId,
+        // categoryId: to.query['categoryId'] ? to.query['categoryId'] : to.params.categoryId,
         currentPage: to.query['currentPage'] ? to.query['currentPage'] : 1,
         pageSize: to.query['pageSize'] ? to.query['pageSize'] : 10
       }
@@ -292,9 +300,10 @@ export default {
     // let categoryId = to.query['category'] ? to.query['category'] : 1
     this.postSceneVisible = false
     let query = {
-      categoryId: to.query['categoryId'] ? to.query['categoryId'] : 1,
+      // categoryId: to.query['categoryId'] ? to.params.categoryId : to.params.categoryId,
+      categoryId: to.query['categoryId'] ? to.query['categoryId'] : to.params.categoryId,
       currentPage: to.query['currentPage'] ? to.query['currentPage'] : 1,
-      pageSize: to.query['pageSize'] ? to.query['pageSize'] : 7
+      pageSize: to.query['pageSize'] ? to.query['pageSize'] : 10
     }
     let args = {
       // url: 'category/' + categoryId,
@@ -316,7 +325,7 @@ export default {
     handleSizeChange (val) {
       // let routeQuery = this.$route['query']
       let query = {
-        categoryId: this.categoryId,
+        categoryId: localStorage.getItem('cateId'),
         currentPage: this.categoryRes.currentPage,
         pageSize: val
       }
@@ -332,7 +341,7 @@ export default {
     handleCurrentChange (val) {
       // let routeQuery = this.$route['query']
       let query = {
-        categoryId: this.categoryId,
+        categoryId: localStorage.getItem('cateId'),
         currentPage: val,
         pageSize: this.categoryRes.pageSize
       }

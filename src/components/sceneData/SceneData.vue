@@ -19,6 +19,16 @@
             </div>
           </template>
         </el-table-column>
+<!--        <el-table-column-->
+<!--          label="辅料"-->
+<!--          width="180">-->
+<!--          <template slot-scope="scope">-->
+<!--            <div v-for="item in scope.row['materialDataList']" :key="item.index" class="text item">-->
+<!--              &lt;!&ndash;              {{item['material']['title']}} ： {{item['value']}} {{item['unit']['title']}}&ndash;&gt;-->
+<!--              {{item['material']?item['material']['title']:''}} ： {{item['value']?item['value']:''}} {{item['unit']?item['unit']['title']:''}}-->
+<!--            </div>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column
           label="能源"
           width="180">
@@ -48,7 +58,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="功能单元"
+          label="工艺描述"
           width="180">
           <template slot-scope="scope">
             <div v-for="item in scope.row['functionUnitDataList']" :key="item.index" class="text item">

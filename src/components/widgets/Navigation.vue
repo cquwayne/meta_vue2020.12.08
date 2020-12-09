@@ -42,11 +42,35 @@ export default {
       //   name: 'SceneDataList',
       //   children: baseList
       // }]
+      // }]
+      let cat
+      console.log(localStorage.getItem('cateId'))
+      if (localStorage.getItem('cateId') === '2') {
+        console.log(0)
+        cat = temp[0]['children'][0]['children']
+      } else if (localStorage.getItem('cateId') === '3') {
+        console.log(10)
+        cat = temp[0]['children'][1]['children']
+      } else if (localStorage.getItem('cateId') === '4') {
+        console.log(20)
+        cat = temp[0]['children'][2]['children']
+      } else if (localStorage.getItem('cateId') === '5') {
+        console.log(30)
+        cat = temp[0]['children'][3]['children']
+      } else {
+        console.log(40)
+        cat = temp[0]['children']
+      }
       return [{
         title: '资源环境负荷数据',
         id: null,
         name: 'SceneDataList',
-        children: temp[0]['children']
+        children: cat
+        // children: temp[0]['children'][0]['children']
+        // title: '资源环境负荷数据',1
+        // id: null,
+        // name: 'SceneDataList',
+        // children: temp[0]['children']
       }]
     },
     baseTree () {
@@ -137,9 +161,11 @@ export default {
   },
   methods: {
     handleScene (data) {
-      // if (data['id'] !== undefined) {
-      this.$router.push({name: 'SceneDataList', query: {categoryId: data['id']}})
-      // }
+      if (data['id'] < 6) {
+        this.$router.push({name: 'SceneDataList', query: {categoryId: localStorage.getItem('cateId')}})
+      } else {
+        this.$router.push({name: 'SceneDataList', query: {categoryId: data['id']}})
+      }
     },
     handleBase (data) {
       console.log(data['tableName'])

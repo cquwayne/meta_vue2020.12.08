@@ -38,6 +38,7 @@ router.beforeEach((to, from, next) => {
     if (store.state.auth) {
       if (store.state.baseTableMap === null || store.state.categories === null || store.state.systemTable === null) {
         api.all(list).then(res => {
+          console.log(res)
           store.commit('setCategories', res[0])
           store.commit('setSystemTable', res[1])
           store.commit('setBaseTableMap', res[2])

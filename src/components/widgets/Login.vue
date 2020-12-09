@@ -36,9 +36,9 @@
 import api from 'api'
 export default {
   name: 'Login',
-  props: {
-    categoryId: {}
-  },
+  // props: {
+  //   categoryId: {}
+  // },
   data () {
     return {
       postForm: {

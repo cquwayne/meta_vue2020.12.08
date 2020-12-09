@@ -54,6 +54,10 @@
         <el-tab-pane :label="tabPaneList[0].label" name="1">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['materialDataList']?frame['materialDataList']:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
         </el-tab-pane>
+        <!--辅料-->
+        <el-tab-pane :label="tabPaneList[6].label" name="7">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['materialDataList']?frame['materialDataList']:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
+        </el-tab-pane>
         <!--能源-->
         <el-tab-pane :label="tabPaneList[1].label" name="2">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['energyDataList']?frame['energyDataList']:null" :label="tabPaneList[1].label" :tableName="tabPaneList[1].tableName"></Pane>
@@ -105,7 +109,7 @@ export default {
       },
       tabPaneList: [
         {
-          label: '工艺对象/辅料',
+          label: '工艺对象',
           name: '1',
           tableName: 'materialData'
         },
@@ -135,10 +139,15 @@ export default {
           tableName: 'envLoadData'
         },
         {
-          label: '输出部件',
+          label: '辅料',
           name: '7',
-          tableName: 'outputPartData'
+          tableName: 'materialData'
         }
+        // {
+        //   label: '输出部件',
+        //   name: '7',
+        //   tableName: 'outputPartData'
+        // }
       ]
     }
   },

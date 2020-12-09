@@ -4,9 +4,9 @@
 <!--      <h3 v-if="title">-->
 <!--        欢迎进入{{title}}工艺资源环境负荷数据库-->
 <!--      </h3>-->
-<!--      <h3 v-else>-->
-<!--        欢迎进入基础制造工艺资源环境负荷数据库-->
-<!--      </h3>-->
+      <h3>
+        欢迎进入基础制造工艺资源环境负荷数据库
+      </h3>
       <div class="wrapper">
 <!--        <p v-if="auth" style="text-align: center">-->
 <!--          <router-link :to="{name: 'User'}">-->
@@ -56,8 +56,8 @@
 <!--            </el-col>-->
 <!--          </el-row>-->
 <!--        </div>-->
-        <Login v-if="type === 'login'" :categoryId="categoryId"></Login>
-        <Register v-else-if="type === 'register'" :categoryId="categoryId"></Register>
+        <Login v-if="type === 'login'"></Login>
+        <Register v-else-if="type === 'register'"></Register>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@ export default {
   data () {
     return {
       title: null,
-      categoryId: 1,
+      // categoryId: 1,
       type: 'login',
       list: [
         {
@@ -120,14 +120,14 @@ export default {
       } else {
         vm.type = 'login'
       }
-      vm.categoryId = to.params['categoryId'] ? to.params['categoryId'] : 1
-      let temp = null
-      vm.$store.state.categories[0]['children'].forEach(item => {
-        if (parseInt(vm.categoryId) === item['id']) {
-          temp = item['title']
-        }
-      })
-      vm.title = temp
+      // vm.categoryId = to.params['categoryId'] ? to.params['categoryId'] : 1
+      // let temp = null
+      // vm.$store.state.categories[0]['children'].forEach(item => {
+      //   if (parseInt(vm.categoryId) === item['id']) {
+      //     temp = item['title']
+      //   }
+      // })
+      // vm.title = temp
     })
   },
   beforeRouteUpdate (to, from, next) {
