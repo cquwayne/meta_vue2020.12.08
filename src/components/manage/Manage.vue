@@ -25,8 +25,8 @@
         :label="column['columnComment']"
         :key="column.index">
         <!--这段解释-->
-        <!--        这里用slot-scope="scope"取到表格中的当前单元格-->
-        <!--        scope.row 直接取到该单元格对象，就是数组里的元素对象-->
+        <!--这里用slot-scope="scope"取到表格中的当前单元格-->
+        <!--scope.row 直接取到该单元格对象，就是数组里的元素对象-->
         <template slot-scope="scope">
           <div v-if="column['columnKey'] === 'MUL'">
             {{scope.row[column['columnName'].substring(0, column['columnName'].length - 2)] ?

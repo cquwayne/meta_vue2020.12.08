@@ -25,6 +25,7 @@ export default new Vuex.Store({
     metadata: JSON.parse(localStorage.getItem('metadata')) || null,
     systemTable: JSON.parse(localStorage.getItem('systemTable')) || null,
     categories: JSON.parse(localStorage.getItem('categories')) || null,
+    cateId: JSON.parse(localStorage.getItem('cateId')) || null,
     baseTableMap: JSON.parse(localStorage.getItem('baseTableMap')) || null,
     breadcrumbList: JSON.parse(localStorage.getItem('breadcrumbList')) || null
   },

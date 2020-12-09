@@ -37,9 +37,9 @@
 import api from 'api'
 export default {
   name: 'Login',
-  props: {
-    categoryId: {}
-  },
+  // props: {
+  //   categoryId: {}
+  // },
   data () {
     return {
       postForm: {
@@ -91,7 +91,8 @@ export default {
               this.$message.error('当前用户名或邮箱已被注册!')
             } else {
               this.$store.commit('login', res)
-              this.$router.push({name: 'Home', params: {categoryId: this.categoryId}})
+              // this.$router.push({name: 'Home', params: {categoryId: this.categoryId}})
+              this.$router.push({name: 'Home'})
             }
           })
         } else {

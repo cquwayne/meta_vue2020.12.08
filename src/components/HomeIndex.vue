@@ -53,6 +53,12 @@ export default {
       ]
     }
   },
+  beforeRouteLeave (to, from, next) {
+    localStorage.removeItem('cateId')
+    localStorage.setItem('cateId', to.params['categoryId'])
+    console.log(to.params['categoryId'])
+    next()
+  },
   methods: {
     handleAdd () {
       this.$message.warning('新增数据库功能暂未开放')
@@ -82,7 +88,7 @@ export default {
         }
       }
       .el-row{
-        /*margin: 50px 0;*/
+/*        margin: 50px 0;*/
       }
       .el-card__body{
         padding: 50px;
