@@ -52,20 +52,32 @@
         </el-tab-pane>
         <!--工艺对象/辅料-->
         <el-tab-pane :label="tabPaneList[0].label" name="1">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['materialDataList']?frame['materialDataList']:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
+          <Pane :inputFrameDataId="inputFrameDataId" :list="objectList?objectList:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
         </el-tab-pane>
         <!--辅料-->
-        <el-tab-pane :label="tabPaneList[6].label" name="7">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="frame['materialDataList']?frame['materialDataList']:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
+        <el-tab-pane :label="tabPaneList[8].label" name="9">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="assistList?assistList:null" :label="tabPaneList[8].label" :tableName="tabPaneList[8].tableName"></Pane>
         </el-tab-pane>
         <!--能源-->
         <el-tab-pane :label="tabPaneList[1].label" name="2">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['energyDataList']?frame['energyDataList']:null" :label="tabPaneList[1].label" :tableName="tabPaneList[1].tableName"></Pane>
         </el-tab-pane>
         <!--环境影响-->
+<!--        <el-tab-pane :label="tabPaneList[5].label" name="6">-->
+<!--          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"-->
+<!--                :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['envLoadDataList']:null" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>-->
+<!--        </el-tab-pane>-->
         <el-tab-pane :label="tabPaneList[5].label" name="6">
-          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
-                :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['envLoadDataList']:null" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>
+          <Pane :inputFrameDataId="inputFrameDataId" :list="exhaustGas" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>
+        </el-tab-pane>
+        <el-tab-pane :label="tabPaneList[6].label" name="7">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="effluent" :label="tabPaneList[5].label" :tableName="tabPaneList[6].tableName"></Pane>
+        </el-tab-pane>
+        <el-tab-pane :label="tabPaneList[7].label" name="8">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="solidWaste" :label="tabPaneList[5].label" :tableName="tabPaneList[7].tableName"></Pane>
+        </el-tab-pane>
+        <el-tab-pane :label="tabPaneList[9].label" name="10">
+          <Pane :inputFrameDataId="inputFrameDataId" :list="health" :label="tabPaneList[9].label" :tableName="tabPaneList[9].tableName"></Pane>
         </el-tab-pane>
 <!--        <el-tab-pane :label="tabPaneList[6].label" name="7">-->
 <!--          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"-->
@@ -133,22 +145,48 @@ export default {
           name: '5',
           tableName: 'functionUnitData'
         },
+        // {
+        //   label: '环境影响',
+        //   name: '6',
+        //   tableName: 'envLoadData'
+        // },
         {
-          label: '环境影响',
+          label: '废气',
           name: '6',
           tableName: 'envLoadData'
         },
         {
-          label: '辅料',
+          label: '废液',
           name: '7',
+          tableName: 'envLoadData'
+        },
+        {
+          label: '固废',
+          name: '8',
+          tableName: 'envLoadData'
+        },
+        {
+          label: '辅料',
+          name: '9',
           tableName: 'materialData'
+        },
+        {
+          label: '职业健康',
+          name: '10',
+          tableName: 'envLoadData'
         }
         // {
         //   label: '输出部件',
         //   name: '7',
         //   tableName: 'outputPartData'
         // }
-      ]
+      ],
+      objectList: [],
+      assistList: [],
+      exhaustGas: [],
+      effluent: [],
+      solidWaste: [],
+      health: []
     }
   },
   beforeRouteEnter (to, from, next) {
@@ -163,6 +201,26 @@ export default {
       api.get(args).then(res => {
         vm.frame = res
         console.log(vm.frame)
+        let materials = res['materialDataList']
+        materials.forEach(material => {
+          if (material['materialDataCategoryId'] === 1) {
+            vm.objectList.push(material)
+          } else {
+            vm.assistList.push(material)
+          }
+        })
+        let envLoads = res['outputFrameDataList'][0]['envLoadDataList']
+        envLoads.forEach(envLoad => {
+          if (envLoad['envLoad']['envLoadCategoryId'] === 1) {
+            vm.exhaustGas.push(envLoad)
+          } else if (envLoad['envLoad']['envLoadCategoryId'] === 2) {
+            vm.effluent.push(envLoad)
+          } else if (envLoad['envLoad']['envLoadCategoryId'] === 3) {
+            vm.solidWaste.push(envLoad)
+          } else if (envLoad['envLoad']['envLoadCategoryId'] === 5) {
+            vm.health.push(envLoad)
+          }
+        })
       })
     })
   },
