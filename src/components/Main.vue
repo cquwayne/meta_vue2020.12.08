@@ -1,7 +1,9 @@
 <template>
   <el-container class="Main">
     <el-header class="title">
-      <Header></Header>
+      <keep-alive>
+        <Header></Header>
+      </keep-alive>
     </el-header>
     <el-container>
       <el-aside>

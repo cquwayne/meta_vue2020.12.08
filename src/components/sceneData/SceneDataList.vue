@@ -1,3 +1,4 @@
+<!--第一级-->
 <template>
   <el-container class="SceneDataList">
     <div style="margin:0 6px">
@@ -8,7 +9,8 @@
           </el-input>
         </el-col>
         <el-col :span="6" style="text-align:right">
-          <el-button type="primary" @click="handleSceneDrawer(null)" :disabled="postSceneVisible">
+<!--          <el-button type="primary" @click="handleSceneDrawer(null)" :disabled="postSceneVisible">-->
+          <el-button type="primary" @click="handleSceneDrawer(null)">
             <i class="el-icon-circle-plus-outline"></i>新增工艺场景
           </el-button>     <!--以弹窗（drawer抽屉）的形式新增工艺场景-->
         </el-col>
@@ -94,7 +96,7 @@
               <el-input v-model="postForm.sceneData.title"></el-input>
             </el-col>
           </el-form-item>
-          <el-form-item label="场景描述" prop="sceneData.description">
+          <el-form-item label="功能单元" prop="sceneData.description">
             <el-col :span="20">
               <el-input type="textarea" autosize v-model="postForm.sceneData.description"></el-input>
             </el-col>

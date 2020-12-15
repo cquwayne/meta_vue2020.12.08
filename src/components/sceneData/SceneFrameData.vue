@@ -1,3 +1,4 @@
+<!--第三级-->
 <template>
   <el-container class="SceneFrameData">
     <el-header>
@@ -37,7 +38,7 @@
       <el-divider></el-divider>
     </el-header>
     <el-main>
-      <el-tabs v-model="activeName">
+      <el-tabs v-model="activeName" type="border-card">
         <!--工艺参数-->
         <el-tab-pane :label="tabPaneList[2].label" name="3">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['keyParameterDataList']?frame['keyParameterDataList']:null" :label="tabPaneList[2].label" :tableName="tabPaneList[2].tableName"></Pane>
@@ -68,16 +69,20 @@
 <!--                :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['envLoadDataList']:null" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>-->
 <!--        </el-tab-pane>-->
         <el-tab-pane :label="tabPaneList[5].label" name="6">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="exhaustGas" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>
+          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
+                :list="exhaustGas" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>
         </el-tab-pane>
         <el-tab-pane :label="tabPaneList[6].label" name="7">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="effluent" :label="tabPaneList[5].label" :tableName="tabPaneList[6].tableName"></Pane>
+          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
+                :list="effluent" :label="tabPaneList[6].label" :tableName="tabPaneList[6].tableName"></Pane>
         </el-tab-pane>
         <el-tab-pane :label="tabPaneList[7].label" name="8">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="solidWaste" :label="tabPaneList[5].label" :tableName="tabPaneList[7].tableName"></Pane>
+          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
+                :list="solidWaste" :label="tabPaneList[7].label" :tableName="tabPaneList[7].tableName"></Pane>
         </el-tab-pane>
         <el-tab-pane :label="tabPaneList[9].label" name="10">
-          <Pane :inputFrameDataId="inputFrameDataId" :list="health" :label="tabPaneList[9].label" :tableName="tabPaneList[9].tableName"></Pane>
+          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
+                :list="health" :label="tabPaneList[9].label" :tableName="tabPaneList[9].tableName"></Pane>
         </el-tab-pane>
 <!--        <el-tab-pane :label="tabPaneList[6].label" name="7">-->
 <!--          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"-->
@@ -151,12 +156,12 @@ export default {
         //   tableName: 'envLoadData'
         // },
         {
-          label: '废气',
+          label: '空气污染',
           name: '6',
           tableName: 'envLoadData'
         },
         {
-          label: '废液',
+          label: '水污染',
           name: '7',
           tableName: 'envLoadData'
         },
