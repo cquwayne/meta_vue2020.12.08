@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     handleSubmit () {
-      api.post({url: this.tableName, params: this.editForm}).then(res => {
+      api.post({url: 'manage/' + this.tableName, params: this.editForm}).then(res => {
         history.go(0)
       })
     }

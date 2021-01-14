@@ -30,9 +30,11 @@
           </el-form>
         </div>
         <el-radio-group v-model="outputIndex" size="small">
-          <el-radio :label="index" v-for="(item, index) in frame['outputFrameDataList']?frame['outputFrameDataList']:null" :key="index">
+          <el-radio :label="index" v-for="(item, index) in frame['outputFrameDataList']?frame['outputFrameDataList']:null" :key="index" border>
             {{item['collectionDescription']}}
           </el-radio>
+          <el-button type="primary" plain size="small">编辑</el-button>
+          <el-button type="info" plain size="small">删除</el-button>
         </el-radio-group>
       </el-card>
       <el-divider></el-divider>

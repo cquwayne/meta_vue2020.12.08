@@ -24,7 +24,7 @@
         >
         <el-table-column
           label="工艺场景名称"
-          width="170">
+          width="230">
           <template slot-scope="scope">
             {{scope.row['title']}}
           </template>
@@ -45,7 +45,7 @@
         </el-table-column>
         <el-table-column
           label="创建时间"
-          width="150">
+          width="110">
           <template slot-scope="scope">
             {{ scope.row['createdAt'] }}
           </template>
