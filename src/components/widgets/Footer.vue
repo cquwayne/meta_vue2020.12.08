@@ -11,7 +11,7 @@
 <!--    </div>-->
     <div class="copyright">
       <div><i class="fa fa-copyright"></i> Copyright CQU Laboratory430 All Right Reserved.</div>
-      <div>重庆大学 430实验室 版权所有2019 地址：重庆市沙坪坝区沙正街174号  邮编400044</div>
+      <div>重庆大学 430实验室 版权所有2021 地址：重庆市沙坪坝区沙正街174号  邮编400044</div>
     </div>
   </div>
 </template>

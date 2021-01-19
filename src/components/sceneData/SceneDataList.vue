@@ -37,9 +37,18 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="功能单元"
-          width="200">
+          label="工艺对象"
+          width="150">
           <template slot-scope="scope">
+<!--            {{scope.row['device']['title']}}-->
+            {{scope.row['description']}}
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="设备"
+          width="150">
+          <template slot-scope="scope">
+            <!--            {{scope.row['device']['title']}}-->
             {{scope.row['description']}}
           </template>
         </el-table-column>
@@ -57,10 +66,10 @@
             {{ scope.row['updatedAt'] }}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="150">
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleDetailDrawer(scope.$index, scope.row)">
-              详情
+              场景数据
             </el-button>
             <el-button size="mini" @click="handleSceneDrawer(scope.row)" :disabled="postSceneVisible">
               编辑
@@ -96,11 +105,11 @@
               <el-input v-model="postForm.sceneData.title"></el-input>
             </el-col>
           </el-form-item>
-          <el-form-item label="功能单元" prop="sceneData.description">
-            <el-col :span="20">
-              <el-input type="textarea" autosize v-model="postForm.sceneData.description"></el-input>
-            </el-col>
-          </el-form-item>
+<!--          <el-form-item label="功能单元" prop="sceneData.description">-->
+<!--            <el-col :span="20">-->
+<!--              <el-input type="textarea" autosize v-model="postForm.sceneData.description"></el-input>-->
+<!--            </el-col>-->
+<!--          </el-form-item>-->
           <el-form-item label="场景分类" prop="sceneData.categoryId">
             <el-cascader
               v-model="postCategoryList"
@@ -425,7 +434,7 @@ export default {
     .input-with-select{
       border-style: ridge;
       border-color: cornflowerblue;
-      border-width: 5px
+      //border-width: 5px
     }
     .hover {
       margin-top: 20px;
