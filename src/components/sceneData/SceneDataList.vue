@@ -1,6 +1,6 @@
 <!--第一级-->
 <template>
-  <el-container class="SceneDataList">
+  <el-container class="SceneDataList" style="width: 2000px">
     <div style="margin:0 6px">
       <el-row :gutter="12" class="hover">
         <el-col :span="15">
@@ -24,7 +24,7 @@
         >
         <el-table-column
           label="工艺场景名称"
-          width="230">
+          width="250">
           <template slot-scope="scope">
             {{scope.row['title']}}
           </template>
@@ -40,16 +40,18 @@
           label="工艺对象"
           width="150">
           <template slot-scope="scope">
-<!--            {{scope.row['device']['title']}}-->
-            {{scope.row['description']}}
+            <div v-for="item in scope.row['inputFrameDataList'][0]['materialDataList']" :key="item.index" class="text item">
+              {{item['material']?item['material']['title']:''}}
+            </div>
           </template>
         </el-table-column>
         <el-table-column
           label="设备"
           width="150">
           <template slot-scope="scope">
-            <!--            {{scope.row['device']['title']}}-->
-            {{scope.row['description']}}
+            <div v-for="item in scope.row['inputFrameDataList'][0]['deviceDataList']" :key="item.index" class="text item">
+              {{item['device']?item['device']['title']:''}}
+            </div>
           </template>
         </el-table-column>
         <el-table-column
@@ -59,14 +61,14 @@
             {{ scope.row['createdAt'] }}
           </template>
         </el-table-column>
-        <el-table-column
-          label="更新时间"
-          width="150">
-          <template slot-scope="scope">
-            {{ scope.row['updatedAt'] }}
-          </template>
-        </el-table-column>
-        <el-table-column label="操作" width="200">
+<!--        <el-table-column-->
+<!--          label="更新时间"-->
+<!--          width="150">-->
+<!--          <template slot-scope="scope">-->
+<!--            {{ scope.row['updatedAt'] }}-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+        <el-table-column label="操作" width="170">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleDetailDrawer(scope.$index, scope.row)">
               场景数据
@@ -290,9 +292,8 @@ export default {
           }
           api.get(args).then(res => {
             vm.categoryRes = res
-            vm.sceneDataList = res['data']
+            vm.sceneDataList = res.data
           })
-          // console.log(localStorage.getItem('sceneDataList'))
         }
       } else {
         // vm.postSceneVisible = false
@@ -377,7 +378,8 @@ export default {
         this.postForm.sceneData.inputFrameData.materialDataList = this.postForm.materialDataList
         this.postForm.sceneData.inputFrameData.deviceDataList = this.postForm.deviceDataList
         this.postForm.sceneData.inputFrameData.keyParameterDataList = this.postForm.keyParameterDataList
-        console.log(this.postForm)
+        // console.log(this.postForm.keyParameterDataList)
+        // console.log(this.postForm)
         api.post({url: 'manage/sceneData', params: this.postForm}).then(result => {
           if (result > 0) {
             this.$router.push({name: 'SceneData', params: {sceneDataId: result}})
@@ -390,7 +392,7 @@ export default {
           }
         })
       } else {
-        console.log(this.postForm.sceneData)
+        // console.log(this.postForm.sceneData)
         this.postSceneDrawer = false
         api.put({url: 'manage/sceneData', params: this.postForm.sceneData}).then(res => {
           this.$router.push({name: 'SceneData', params: {sceneDataId: this.postForm.sceneData['id']}})
@@ -409,8 +411,7 @@ export default {
     },
     handleSceneDrawer (row) {
       if (row) {
-        console.log(this.categories)
-        console.log(row)
+        // console.log(row)
         this.postForm.sceneData = row
         this.postForm.sceneData['id'] = row['id']
         // this.postForm.sceneData['title'] = row['title']

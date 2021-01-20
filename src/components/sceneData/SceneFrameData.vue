@@ -1,8 +1,12 @@
 <!--第三级-->
 <template>
-  <el-container class="SceneFrameData">
+  <el-container class="SceneFrameData" style="width: 2000px">
     <el-header>
       <SceneBasic :sceneData="sceneData"></SceneBasic>
+      <el-button-group>
+        <el-button type="primary" icon="el-icon-arrow-left">上一级</el-button>
+      </el-button-group>
+      <el-divider></el-divider>
       <el-card class="hover">
         <div>
           <el-form>
@@ -42,27 +46,27 @@
     <el-main>
       <el-tabs v-model="activeName" type="border-card">
         <!--工艺参数-->
-        <el-tab-pane :label="tabPaneList[2].label" name="3">
+        <el-tab-pane :label="tabPaneList[2].label" name="1">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['keyParameterDataList']?frame['keyParameterDataList']:null" :label="tabPaneList[2].label" :tableName="tabPaneList[2].tableName"></Pane>
         </el-tab-pane>
         <!--设备-->
-        <el-tab-pane :label="tabPaneList[3].label" name="4">
+        <el-tab-pane :label="tabPaneList[3].label" name="2">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['deviceDataList']?frame['deviceDataList']:null" :label="tabPaneList[3].label" :tableName="tabPaneList[3].tableName"></Pane>
         </el-tab-pane>
         <!--功能单元-->
-        <el-tab-pane :label="tabPaneList[4].label" name="5">
+        <el-tab-pane :label="tabPaneList[4].label" name="3">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['functionUnitDataList']?frame['functionUnitDataList']:null" :label="tabPaneList[4].label" :tableName="tabPaneList[4].tableName"></Pane>
         </el-tab-pane>
         <!--工艺对象/辅料-->
-        <el-tab-pane :label="tabPaneList[0].label" name="1">
+        <el-tab-pane :label="tabPaneList[0].label" name="4">
           <Pane :inputFrameDataId="inputFrameDataId" :list="objectList?objectList:null" :label="tabPaneList[0].label" :tableName="tabPaneList[0].tableName"></Pane>
         </el-tab-pane>
         <!--辅料-->
-        <el-tab-pane :label="tabPaneList[8].label" name="9">
+        <el-tab-pane :label="tabPaneList[8].label" name="5">
           <Pane :inputFrameDataId="inputFrameDataId" :list="assistList?assistList:null" :label="tabPaneList[8].label" :tableName="tabPaneList[8].tableName"></Pane>
         </el-tab-pane>
         <!--能源-->
-        <el-tab-pane :label="tabPaneList[1].label" name="2">
+        <el-tab-pane :label="tabPaneList[1].label" name="6">
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['energyDataList']?frame['energyDataList']:null" :label="tabPaneList[1].label" :tableName="tabPaneList[1].tableName"></Pane>
         </el-tab-pane>
         <!--环境影响-->
@@ -70,15 +74,15 @@
 <!--          <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"-->
 <!--                :list="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['envLoadDataList']:null" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>-->
 <!--        </el-tab-pane>-->
-        <el-tab-pane :label="tabPaneList[5].label" name="6">
+        <el-tab-pane :label="tabPaneList[5].label" name="7">
           <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
                 :list="exhaustGas" :label="tabPaneList[5].label" :tableName="tabPaneList[5].tableName"></Pane>
         </el-tab-pane>
-        <el-tab-pane :label="tabPaneList[6].label" name="7">
+        <el-tab-pane :label="tabPaneList[6].label" name="8">
           <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
                 :list="effluent" :label="tabPaneList[6].label" :tableName="tabPaneList[6].tableName"></Pane>
         </el-tab-pane>
-        <el-tab-pane :label="tabPaneList[7].label" name="8">
+        <el-tab-pane :label="tabPaneList[7].label" name="9">
           <Pane :inputFrameDataId="inputFrameDataId" :outputFrameDataId="frame['outputFrameDataList'].length!==0?frame['outputFrameDataList'][parseInt(outputIndex)]['id']:0"
                 :list="solidWaste" :label="tabPaneList[7].label" :tableName="tabPaneList[7].tableName"></Pane>
         </el-tab-pane>

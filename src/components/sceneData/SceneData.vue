@@ -1,18 +1,19 @@
 <!--第二级页面-->
 <template>
-  <el-container class="SceneData">
+  <el-container class="SceneData" style="width: 2000px">
     <el-header>
         <SceneBasic :sceneData="sceneData"></SceneBasic>
-        <el-button type="primary" @click="postInputFrame">新增数据条目</el-button>
+        <el-button-group>
+           <el-button type="primary" icon="el-icon-arrow-left" @click="postInputFrame">上一级</el-button>
+        </el-button-group>
       <el-divider></el-divider>
+      <el-button type="primary" @click="postInputFrame">新增数据条目</el-button>
     </el-header>
     <el-main>
-      <el-table
-        :data="sceneData['inputFrameDataList']"
-        style="width: 100%">
+      <el-table :data="sceneData['inputFrameDataList']" stripe style="width: 100%">
         <el-table-column
           label="工艺对象/辅料"
-          width="180">
+          width="160">
           <template slot-scope="scope">
             <div v-for="item in scope.row['materialDataList']" :key="item.index" class="text item">
 <!--              {{item['material']['title']}} ： {{item['value']}} {{item['unit']['title']}}-->
@@ -22,7 +23,7 @@
         </el-table-column>
         <el-table-column
           label="能源"
-          width="180">
+          width="140">
           <template slot-scope="scope">
             <div v-for="item in scope.row['energyDataList']" :key="item.index" class="text item">
 <!--              {{item['energy']['title']}} ： {{item['value']}} {{item['unit']['title']}}-->
@@ -32,7 +33,7 @@
         </el-table-column>
         <el-table-column
           label="设备"
-          width="120">
+          width="140">
           <template slot-scope="scope">
             <div v-for="item in scope.row['deviceDataList']" :key="item.index" class="text item">
               {{item['device']?item['device']['title']:''}}
@@ -41,7 +42,7 @@
         </el-table-column>
         <el-table-column
           label="工艺参数"
-          width="200">
+          width="170">
           <template slot-scope="scope">
             <div v-for="item in scope.row['keyParameterDataList']" :key="item.index" class="text item">
               {{item['title']?item['title']:''}} :  {{item['description']?item['description']:''}}
@@ -50,17 +51,16 @@
         </el-table-column>
         <el-table-column
           label="工艺描述"
-          width="210">
+          width="160">
           <template slot-scope="scope">
             <div v-if="scope.row['outputFrameDataList']" v-for="item in scope.row['outputFrameDataList']" :key="item.index" class="text item">
               {{item['collectionDescription']?item['collectionDescription']:''}}
-<!--              {{scope.row['collectionDescription']}}-->
             </div>
           </template>
         </el-table-column>
         <el-table-column
           label="功能单元"
-          width="180">
+          width="140">
           <template slot-scope="scope">
             <div v-for="item in scope.row['functionUnitDataList']" :key="item.index" class="text item">
               {{item['functionDescription']?item['functionDescription']:''}}
@@ -68,29 +68,20 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="环境排放"
-          width="180">
+          label="环境负荷"
+          width="190">
           <template slot-scope="scope">
-            <div v-for="item in scope.row['envLoadDataList']" :key="item.index" class="text item">
-              {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']?item['value']:''}} {{item['unit']?item['unit']['title']:''}}
+            <div v-for="item in scope.row['outputFrameDataList'][0]['envLoadDataList']" :key="item.index" class="text item">
+              {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}
             </div>
           </template>
         </el-table-column>
-        <el-table-column
-          label="环境排放"
-          width="180">
+        <el-table-column label="操作" width="90">
           <template slot-scope="scope">
-            <div v-for="item in scope.row['envLoadDataList']" :key="item.index" class="text item">
-              {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']?item['value']:''}} {{item['unit']?item['unit']['title']:''}}
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-<!--            <el-popover-->
-<!--              placement="right"-->
-<!--              trigger="hover">-->
-<!--              <el-table :data="scope.row['outputFrameDataList']">-->
+            <el-popover
+              placement="right"
+              trigger="hover">
+              <el-table :data="scope.row['outputFrameDataList']">
 <!--                <el-table-column-->
 <!--                  label="工艺描述"-->
 <!--                  width="180">-->
@@ -98,15 +89,15 @@
 <!--                    {{scope.row['collectionDescription']}}-->
 <!--                  </template>-->
 <!--                </el-table-column>-->
-<!--                <el-table-column-->
-<!--                  label="环境负荷"-->
-<!--                  width="180">-->
-<!--                  <template slot-scope="scope">-->
-<!--                    <div v-for="item in scope.row['envLoadDataList']" :key="item.index" class="text item">-->
-<!--                      {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}-->
-<!--                    </div>-->
-<!--                  </template>-->
-<!--                </el-table-column>-->
+                <el-table-column
+                  label="环境负荷"
+                  width="220">
+                  <template slot-scope="scope">
+                    <div v-for="item in scope.row['envLoadDataList']" :key="item.index" class="text item">
+                      {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}
+                    </div>
+                  </template>
+                </el-table-column>
 <!--                <el-table-column-->
 <!--                  label="输出部件"-->
 <!--                  width="180">-->
@@ -116,9 +107,9 @@
 <!--                    </div>-->
 <!--                  </template>-->
 <!--                </el-table-column>-->
-<!--              </el-table>-->
-              <el-button @click="handleDetail(scope.row)" slot="reference" size="mini">编辑</el-button>
-<!--            </el-popover>-->
+              </el-table>
+              <el-button @click="handleDetail(scope.row)" slot="reference" size="mini">负荷数据</el-button>
+            </el-popover>
           </template>
         </el-table-column>
       </el-table>
@@ -155,20 +146,18 @@ export default {
       }
       api.get(args).then(res => {
         vm.sceneData = res
+        console.log(res)
         vm.postInputFrameData.sceneDataId = vm.sceneData['id']
         if (vm.sceneData['inputFrameDataList'].length !== 0) {
           vm.sceneData['inputFrameDataList'][0]['materialDataList'].forEach((item) => {
             vm.postInputFrameData.materialDataList.push(item['materialId'])
           })
-          console.log(vm.postInputFrameData.materialDataList)
           vm.sceneData['inputFrameDataList'][0]['deviceDataList'].forEach((item) => {
             vm.postInputFrameData.deviceDataList.push(item['deviceId'])
           })
-          console.log(vm.postInputFrameData.deviceDataList)
           vm.sceneData['inputFrameDataList'][0]['keyParameterDataList'].forEach((item) => {
             vm.postInputFrameData.keyParameterDataList.push(item['title'])
           })
-          console.log(vm.postInputFrameData.keyParameterDataList)
         }
       })
     })
