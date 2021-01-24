@@ -4,7 +4,7 @@
     <el-header>
       <SceneBasic :sceneData="sceneData"></SceneBasic>
       <el-button-group>
-        <el-button type="primary" icon="el-icon-arrow-left">上一级</el-button>
+        <el-button type="primary" icon="el-icon-arrow-left" @click="goBack">上一级</el-button>
       </el-button-group>
       <el-divider></el-divider>
       <el-card class="hover">
@@ -246,6 +246,9 @@ export default {
     next()
   },
   methods: {
+    goBack () {
+      window.history.back()
+    },
     handleClick () {
       this.outputFrameData.inputFrameDataId = this.inputFrameDataId
       let args = {

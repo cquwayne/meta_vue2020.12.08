@@ -57,6 +57,7 @@ export default {
     localStorage.removeItem('cateId')
     localStorage.setItem('cateId', to.params['categoryId'])
     console.log(to.params['categoryId'])
+    console.log(localStorage.getItem('cateId'))
     next()
   },
   methods: {
