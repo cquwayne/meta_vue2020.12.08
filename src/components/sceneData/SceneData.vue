@@ -4,7 +4,7 @@
     <el-header>
         <SceneBasic :sceneData="sceneData"></SceneBasic>
         <el-button-group>
-           <el-button type="primary" icon="el-icon-arrow-left" @click="postInputFrame">上一级</el-button>
+           <el-button type="primary" icon="el-icon-arrow-left" @click="goBack">上一级</el-button>
         </el-button-group>
       <el-divider></el-divider>
       <el-button type="primary" @click="postInputFrame">新增数据条目</el-button>
@@ -16,7 +16,6 @@
           width="160">
           <template slot-scope="scope">
             <div v-for="item in scope.row['materialDataList']" :key="item.index" class="text item">
-<!--              {{item['material']['title']}} ： {{item['value']}} {{item['unit']['title']}}-->
               {{item['material']?item['material']['title']:''}} ： {{item['value']?item['value']:''}} {{item['unit']?item['unit']['title']:''}}
             </div>
           </template>
@@ -26,7 +25,6 @@
           width="140">
           <template slot-scope="scope">
             <div v-for="item in scope.row['energyDataList']" :key="item.index" class="text item">
-<!--              {{item['energy']['title']}} ： {{item['value']}} {{item['unit']['title']}}-->
               {{item['energy']?item['energy']['title']:''}} ： {{item['value']?item['value']:''}} {{item['unit']?item['unit']['title']:''}}
             </div>
           </template>
@@ -70,13 +68,13 @@
         <el-table-column
           label="环境负荷"
           width="190">
-          <template slot-scope="scope">
+          <template slot-scope="scope" v-if="scope.row['outputFrameDataList'].length!==0">
             <div v-for="item in scope.row['outputFrameDataList'][0]['envLoadDataList']" :key="item.index" class="text item">
               {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="90">
+        <el-table-column label="操作" width="140">
           <template slot-scope="scope">
             <el-popover
               placement="right"
@@ -108,7 +106,7 @@
 <!--                  </template>-->
 <!--                </el-table-column>-->
               </el-table>
-              <el-button @click="handleDetail(scope.row)" slot="reference" size="mini">负荷数据</el-button>
+              <el-button @click="handleDetail(scope.row)" slot="reference" size="mini">资源环境负荷数据</el-button>
             </el-popover>
           </template>
         </el-table-column>
@@ -173,6 +171,10 @@ export default {
     },
     handleDelete (index, row) {
       // console.log(index, row)
+    },
+    goBack () {
+      history.go(-1)
+      // window.history.back()
     },
     postInputFrame () {
       if (this.sceneData['inputFrameDataList'].length !== 0) {

@@ -24,21 +24,21 @@
         >
         <el-table-column
           label="工艺场景名称"
-          width="250">
+          width="230">
           <template slot-scope="scope">
             {{scope.row['title']}}
           </template>
         </el-table-column>
         <el-table-column
           label="工艺类型"
-          width="150">
+          width="110">
           <template slot-scope="scope">
             {{scope.row['category']['title']}}
           </template>
         </el-table-column>
         <el-table-column
           label="工艺对象"
-          width="150">
+          width="200">
           <template slot-scope="scope">
             <div v-for="item in scope.row['inputFrameDataList'][0]['materialDataList']" :key="item.index" class="text item">
               {{item['material']?item['material']['title']:''}}
@@ -47,8 +47,8 @@
         </el-table-column>
         <el-table-column
           label="设备"
-          width="150">
-          <template slot-scope="scope">
+          width="180">
+          <template slot-scope="scope" v-if="scope.row['inputFrameDataList']">
             <div v-for="item in scope.row['inputFrameDataList'][0]['deviceDataList']" :key="item.index" class="text item">
               {{item['device']?item['device']['title']:''}}
             </div>
@@ -269,8 +269,8 @@ export default {
       // let categoryId = to.query['categoryId'] ? to.query['categoryId'] : 1
       let query = {
         // 三目运算符
-        categoryId: to.query['categoryId'] ? to.query.categoryId : to.params.categoryId,
-        // categoryId: to.query['categoryId'] ? to.query['categoryId'] : to.params.categoryId,
+        categoryId: to.params['categoryId'] !== undefined ? to.params.categoryId : localStorage.getItem('cateId'),
+        // categoryId: to.query['categoryId'] ? to.query.categoryId : to.params.categoryId,
         currentPage: to.query['currentPage'] ? to.query['currentPage'] : 1,
         pageSize: to.query['pageSize'] ? to.query['pageSize'] : 10
       }
@@ -317,6 +317,7 @@ export default {
       currentPage: to.query['currentPage'] ? to.query['currentPage'] : 1,
       pageSize: to.query['pageSize'] ? to.query['pageSize'] : 10
     }
+    console.log('gengxin')
     let args = {
       // url: 'category/' + categoryId,
       url: 'category/',
