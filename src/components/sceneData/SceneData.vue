@@ -4,7 +4,7 @@
     <el-header>
         <SceneBasic :sceneData="sceneData"></SceneBasic>
         <el-button-group>
-           <el-button type="primary" icon="el-icon-arrow-left" @click="postInputFrame">上一级</el-button>
+           <el-button type="primary" icon="el-icon-arrow-left" @click="goBack">上一级</el-button>
         </el-button-group>
       <el-divider></el-divider>
       <el-button type="primary" @click="postInputFrame">新增数据条目</el-button>
@@ -207,6 +207,9 @@ export default {
           }
         })
       }
+    },
+    goBack () {
+      window.history.back()
     }
   }
 }
