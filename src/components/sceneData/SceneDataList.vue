@@ -272,7 +272,7 @@ export default {
         categoryId: to.params['categoryId'] !== undefined ? to.params.categoryId : localStorage.getItem('cateId'),
         // categoryId: to.query['categoryId'] ? to.query.categoryId : to.params.categoryId,
         currentPage: to.query['currentPage'] ? to.query['currentPage'] : 1,
-        pageSize: to.query['pageSize'] ? to.query['pageSize'] : 10
+        pageSize: to.query['pageSize'] ? to.query['pageSize'] : 7
       }
       if (to.params['sceneDataList'] !== undefined) {
         vm.sceneDataList = to.params['sceneDataList']
@@ -315,7 +315,7 @@ export default {
       // categoryId: to.query['categoryId'] ? to.params.categoryId : to.params.categoryId,
       categoryId: to.query['categoryId'] ? to.query['categoryId'] : to.params.categoryId,
       currentPage: to.query['currentPage'] ? to.query['currentPage'] : 1,
-      pageSize: to.query['pageSize'] ? to.query['pageSize'] : 10
+      pageSize: to.query['pageSize'] ? to.query['pageSize'] : 7
     }
     console.log('gengxin')
     let args = {

@@ -6,7 +6,7 @@
       <el-button-group>
         <el-button type="primary" icon="el-icon-arrow-left" @click="goBack">上一级</el-button>
       </el-button-group>
-      <el-divider></el-divider>
+<!--      <el-divider></el-divider>-->
       <el-card class="hover">
         <div>
           <el-form>
@@ -41,7 +41,7 @@
           <el-button type="info" plain size="small">删除</el-button>
         </el-radio-group>
       </el-card>
-      <el-divider></el-divider>
+<!--      <el-divider></el-divider>-->
     </el-header>
     <el-main>
       <el-tabs v-model="activeName" type="border-card">
