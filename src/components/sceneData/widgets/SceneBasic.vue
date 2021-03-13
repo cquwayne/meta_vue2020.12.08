@@ -6,10 +6,7 @@
         <el-breadcrumb-item :to="{name: 'SceneDataList', params: {categoryId: sceneData['categoryId']}}">{{sceneData['category'] ? sceneData['category']['title'] : ''}}</el-breadcrumb-item>
         <el-breadcrumb-item :to="{name: 'SceneData', params:{sceneDataId: sceneData['id']}}">{{sceneData['title']}}</el-breadcrumb-item>
       </el-breadcrumb>
-<!--    </div>-->
-<!--    <div>-->
 <!--      <div>工艺场景描述: {{sceneData['description']}}</div>-->
-<!--    </div>-->
   </el-card>
 </template>
 <script>

@@ -13,7 +13,8 @@
             <el-row>
               <el-form-item class="line">
                 <el-col>
-                  <el-tag effect="dark" type="success">工艺描述</el-tag>
+                  <el-tag effect="dark" type="success">{{frame['sceneData']['title']}}</el-tag>
+<!--                  <el-tag effect="dark" type="success">{{sceneData['title']}}</el-tag>-->
                 </el-col>
               </el-form-item>
               <div class="line right">
@@ -33,8 +34,12 @@
             </el-row>
           </el-form>
         </div>
-        <el-radio-group v-model="outputIndex" size="small">
-          <el-radio :label="index" v-for="(item, index) in frame['outputFrameDataList']?frame['outputFrameDataList']:null" :key="index" border>
+        <el-radio-group v-model="outputIndex">
+<!--          <el-tag type="warning" effect="dark">工艺描述</el-tag>-->
+          <el-button type="text" effect="dark" style="margin-right:+20px">
+            工艺描述
+          </el-button>
+          <el-radio :label="index" v-for="(item, index) in frame['outputFrameDataList']?frame['outputFrameDataList']:null" :key="index" style="margin-right:20px" size="small">
             {{item['collectionDescription']}}
           </el-radio>
           <el-button type="primary" plain size="small">编辑</el-button>
@@ -44,9 +49,9 @@
 <!--      <el-divider></el-divider>-->
     </el-header>
     <el-main>
-      <el-tabs v-model="activeName" type="border-card">
+      <el-tabs v-model="activeName" type="border-card" >
         <!--工艺参数-->
-        <el-tab-pane :label="tabPaneList[2].label" name="1">
+        <el-tab-pane :label="tabPaneList[2].label" name="1" >
           <Pane :inputFrameDataId="inputFrameDataId" :list="frame['keyParameterDataList']?frame['keyParameterDataList']:null" :label="tabPaneList[2].label" :tableName="tabPaneList[2].tableName"></Pane>
         </el-tab-pane>
         <!--设备-->
@@ -204,13 +209,16 @@ export default {
     next(vm => {
       vm.frame = {}
       vm.inputFrameDataId = parseInt(to.params['inputFrameDataId'])
-      vm.sceneData = to.params['sceneData']
+      if (to.params['sceneData'] !== undefined) {
+        vm.sceneData = to.params['sceneData']
+      }
       // console.log(vm.sceneData)
       let args = {
         url: 'manage/inputFrameData/' + vm.inputFrameDataId
       }
       api.get(args).then(res => {
         vm.frame = res
+        vm.sceneData = res['sceneData']
         console.log(vm.frame)
         let materials = res['materialDataList']
         materials.forEach(material => {
@@ -243,6 +251,15 @@ export default {
     api.get(args).then(res => {
       this.frame = res
     })
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    this.objectList = []
+    this.assistList = []
+    this.exhaustGas = []
+    this.effluent = []
+    this.solidWaste = []
+    this.health = []
     next()
   },
   methods: {

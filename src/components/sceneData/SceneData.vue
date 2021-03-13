@@ -72,17 +72,26 @@
           width="200">
           <template slot-scope="scope">
             <div v-if="scope.row['outputFrameDataList']&&scope.row['outputFrameDataList'][0]['envLoadDataList']"
-                 v-for="item in scope.row['outputFrameDataList'][0]['envLoadDataList']" :key="item.index" class="text item">
+                 v-for="item in scope.row['outputFrameDataList'].length!==0?scope.row['outputFrameDataList'][0]['envLoadDataList']:null" :key="item.index" class="text item">
               {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}
             </div>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="90">
           <template slot-scope="scope">
-            <el-popover
-              placement="right"
-              trigger="hover">
-              <el-table :data="scope.row['outputFrameDataList']">
+<!--            <el-popover-->
+<!--              placement="right"-->
+<!--              trigger="hover">-->
+<!--              <el-table :data="scope.row['outputFrameDataList']">-->
+<!--                <el-table-column-->
+<!--                  label="环境负荷"-->
+<!--                  width="220">-->
+<!--                  <template slot-scope="scope">-->
+<!--                    <div v-for="item in scope.row['envLoadDataList']" :key="item.index" class="text item">-->
+<!--                      {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}-->
+<!--                    </div>-->
+<!--                  </template>-->
+<!--                </el-table-column>-->
 <!--                <el-table-column-->
 <!--                  label="工艺描述"-->
 <!--                  width="180">-->
@@ -90,15 +99,6 @@
 <!--                    {{scope.row['collectionDescription']}}-->
 <!--                  </template>-->
 <!--                </el-table-column>-->
-                <el-table-column
-                  label="环境负荷"
-                  width="220">
-                  <template slot-scope="scope">
-                    <div v-for="item in scope.row['envLoadDataList']" :key="item.index" class="text item">
-                      {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}
-                    </div>
-                  </template>
-                </el-table-column>
 <!--                <el-table-column-->
 <!--                  label="输出部件"-->
 <!--                  width="180">-->
@@ -108,9 +108,9 @@
 <!--                    </div>-->
 <!--                  </template>-->
 <!--                </el-table-column>-->
-              </el-table>
+<!--              </el-table>-->
               <el-button @click="handleDetail(scope.row)" slot="reference" size="mini">负荷数据</el-button>
-            </el-popover>
+<!--            </el-popover>-->
           </template>
         </el-table-column>
       </el-table>
