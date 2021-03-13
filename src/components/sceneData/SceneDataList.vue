@@ -37,7 +37,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="工艺对象"
+          label="工艺对象与辅料"
           width="200">
           <template slot-scope="scope">
             <div v-for="item in scope.row['inputFrameDataList'][0]['materialDataList']" :key="item.index" class="text item">
@@ -102,6 +102,14 @@
           <el-row>
             <el-tag class="title" type="success">场景基本信息</el-tag>
           </el-row>
+          <el-form-item label="场景分类" prop="sceneData.categoryId">
+            <el-cascader
+              v-model="postCategoryList"
+              clearable
+              :options="categories"
+              :props="{ checkStrictly: true, expandTrigger: 'hover', label: 'title', value: 'id' }">
+            </el-cascader>  <!--级联选择器，选择场景分类，三级场景分类-->
+          </el-form-item>
           <el-form-item label="场景名称" prop="sceneData.title">
             <el-col :span="20">
               <el-input v-model="postForm.sceneData.title"></el-input>
@@ -112,14 +120,6 @@
 <!--              <el-input type="textarea" autosize v-model="postForm.sceneData.description"></el-input>-->
 <!--            </el-col>-->
 <!--          </el-form-item>-->
-          <el-form-item label="场景分类" prop="sceneData.categoryId">
-            <el-cascader
-              v-model="postCategoryList"
-              clearable
-              :options="categories"
-              :props="{ checkStrictly: true, expandTrigger: 'hover', label: 'title', value: 'id' }">
-            </el-cascader>  <!--级联选择器，选择场景分类，三级场景分类-->
-          </el-form-item>
           <el-row>
             <el-tag class="title" type="primary">场景物料种类</el-tag>
           </el-row>

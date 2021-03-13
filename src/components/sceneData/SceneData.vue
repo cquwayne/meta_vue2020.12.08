@@ -13,7 +13,7 @@
       <el-table :data="sceneData['inputFrameDataList']" stripe style="width: 100%">
         <el-table-column
           label="工艺对象/辅料"
-          width="160">
+          width="200">
           <template slot-scope="scope">
             <div v-for="item in scope.row['materialDataList']" :key="item.index" class="text item">
 <!--              {{item['material']['title']}} ： {{item['value']}} {{item['unit']['title']}}-->
@@ -23,7 +23,7 @@
         </el-table-column>
         <el-table-column
           label="能源"
-          width="140">
+          width="160">
           <template slot-scope="scope">
             <div v-for="item in scope.row['energyDataList']" :key="item.index" class="text item">
 <!--              {{item['energy']['title']}} ： {{item['value']}} {{item['unit']['title']}}-->
@@ -42,7 +42,7 @@
         </el-table-column>
         <el-table-column
           label="工艺参数"
-          width="170">
+          width="200">
           <template slot-scope="scope">
             <div v-for="item in scope.row['keyParameterDataList']" :key="item.index" class="text item">
               {{item['title']?item['title']:''}} :  {{item['description']?item['description']:''}}
@@ -71,7 +71,8 @@
           label="环境负荷"
           width="190">
           <template slot-scope="scope">
-            <div v-for="item in scope.row['outputFrameDataList'][0]['envLoadDataList']" :key="item.index" class="text item">
+            <div v-if="scope.row['outputFrameDataList']&&scope.row['outputFrameDataList'][0]['envLoadDataList']"
+                 v-for="item in scope.row['outputFrameDataList'][0]['envLoadDataList']" :key="item.index" class="text item">
               {{item['envLoad']?item['envLoad']['title']:''}} ： {{item['value']}} {{item['unit']?item['unit']['title']:''}}
             </div>
           </template>
