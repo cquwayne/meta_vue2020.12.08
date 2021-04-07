@@ -24,7 +24,7 @@
               <router-link :to="{name: 'Home', query:{type: 'forget'}}" type="warning">忘记密码</router-link>
             </el-col>
             <el-col :span="9" style="text-align:right">
-              <router-link :to="{name: 'HomeIndex'}">系统首页</router-link>
+              <router-link :to="{name: 'HomeSelect'}">系统首页</router-link>
             </el-col>
           </el-row>
         </el-form>
@@ -85,7 +85,7 @@ export default {
               this.$message.error('账户名或密码错误!')
             } else {
               this.$store.commit('login', res)
-              this.$router.push({name: 'HomeIndex'})
+              this.$router.push({name: 'HomeSelect'})
             }
           })
         } else {

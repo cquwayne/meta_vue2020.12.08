@@ -15,6 +15,8 @@ export default new Vuex.Store({
     // rootApi: 'http://47.92.117.58/api/',
     root: 'http://localhost:8000/api/',
     rootApi: 'http://localhost:8000/api/',
+    // root: 'http://121.196.167.188/api/',
+    // rootApi: 'http://121.196.167.188/api/',
     posting: false,
     pageLoading: false,
     scrollLoading: false,

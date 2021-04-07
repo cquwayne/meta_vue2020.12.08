@@ -5,7 +5,7 @@
 <!--        欢迎进入{{title}}工艺资源环境负荷数据库-->
 <!--      </h3>-->
       <h3>
-        欢迎进入基础制造工艺资源环境负荷数据库
+        欢迎进入资源环境负荷数据库与环境影响评价支持系统
       </h3>
       <div class="wrapper">
 <!--        <p v-if="auth" style="text-align: center">-->
@@ -150,7 +150,7 @@ export default {
       padding: 20px;
       font-size: 25px;
       text-align: center;
-      background: #4A524F;
+      background: #4a524f;
       color: gold;
     }
     .font{
