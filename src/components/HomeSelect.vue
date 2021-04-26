@@ -1,22 +1,33 @@
 <template>
   <div class="HomeSelect">
+    <h2>
+      基础制造工艺资源环境负荷数据库系统及环境影响评价支持系统
+    </h2>
     <el-row :gutter="24">
-      <el-col :span="24">
-        <a style="color: dodgerblue;line-height: 100px;display: block; text-align: center;font-size:25px;">
-          请选择要进入的系统
-        </a>
+      <el-col :span="5" >
+        <div>&nbsp</div>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="7">
         <el-card always="always">
-          <router-link :to="{ path: '/homeIndex'}" style="color: #303133;">
-            <i class="el-icon-document-copy"></i>进入数据库系统
-          </router-link>
+<!--          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">-->
+          <img src="/static/photo1.jpg" class="image" width="438" height="262">
+          <div class="bottom clearfix">
+              <router-link :to="{ path: '/homeIndex'}">
+                 <i class="el-icon-document-copy"></i>资源环境负荷数据库系统
+              </router-link>
+          </div>
         </el-card>
       </el-col>
-      <el-col :span="12">
-        <el-card always="always" onclick = "window.location.href = 'http://graduate.cqu.edu.cn/'">
-          <a class="el-icon-pie-chart" href="http://graduate.cqu.edu.cn/" style="color: #303133;">进入环境影响评价系统</a>
+      <el-col :span="7">
+        <el-card always="always">
+          <img src="/static/photo2.jpg" class="image" width="438" height="262">
+          <div class="bottom clearfix">
+            <a class="el-icon-pie-chart" href="javascript:window.open('http://47.104.210.64:5189/#/')">环境影响评价支持系统</a>
+          </div>
         </el-card>
+      </el-col>
+      <el-col :span="5">
+        <div>&nbsp</div>
       </el-col>
     </el-row>
   </div>
@@ -40,35 +51,41 @@ name: "HomeSelect",
 
 <style lang="scss">
     .HomeSelect{
-      max-width: 850px;
-      max-height: 500px;
-      margin: 50px 475px 0 475px;
+      h2{
+        margin: 0 0 50px 0;
+        padding: 40px;
+        font-size: 28px;
+        text-align: center;
+        background: #4a524f;
+        color: gold;
+      }
       a{
+        line-height:40px;
+        color: #303133;
         font-weight: bolder;
-        font-size: larger;
+        font-size: 21px;
+        letter-spacing: 1px;
         text-align: center!important;
         &:hover{
-          .el-card{
-            background: #2f4f4f !important;
-            color: #ffffff;
-        }
+            color: cornflowerblue;
       }
     }
     .el-row{
-/*        margin: 50px 0;*/
+      margin: 50px 0;
+      //width: 1200px;
+      //height: 500px;
+      //height: 100%;
+      //width: 100%;
     }
     .el-card__body{
-      padding: 50px;
+      padding: 30px;
       text-align: center!important;
       i{
         font-size: x-large;
       }
     }
     .el-card{
-      margin-bottom: 10px!important;
-    }
-    .add .el-card__body{
-      padding: 30px!important;
+      margin-bottom: 50px!important;
     }
   }
 </style>

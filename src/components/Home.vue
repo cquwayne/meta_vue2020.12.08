@@ -4,9 +4,9 @@
 <!--      <h3 v-if="title">-->
 <!--        欢迎进入{{title}}工艺资源环境负荷数据库-->
 <!--      </h3>-->
-      <h3>
-        欢迎进入资源环境负荷数据库与环境影响评价支持系统
-      </h3>
+      <h2>
+        基础制造工艺资源环境负荷数据库系统及环境影响评价支持系统
+      </h2>
       <div class="wrapper">
 <!--        <p v-if="auth" style="text-align: center">-->
 <!--          <router-link :to="{name: 'User'}">-->
@@ -145,10 +145,10 @@ export default {
 
 <style lang="scss">
   .Home{
-    h3{
+    h2{
       margin: 0 0 50px 0;
-      padding: 20px;
-      font-size: 25px;
+      padding: 40px;
+      font-size: 28px;
       text-align: center;
       background: #4a524f;
       color: gold;
