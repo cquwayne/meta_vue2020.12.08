@@ -14,6 +14,7 @@ import Manage from '../components/manage/Manage'
 import ManageIndex from '../components/manage/ManageIndex'
 import User from '../components/user/User'
 import Search from '../components/search/Search'
+import EnvAssessment from '../components/evaluation/EnvAssessment'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
           path: '/sceneData/:sceneDataId/inputFrameData/:inputFrameDataId',
           name: 'SceneFrameData',
           component: SceneFrameData
+        },
+        {
+          path: '/envAssessment',
+          name: 'EnvAssessment',
+          component: EnvAssessment
         },
         {
           path: '/batch/doc',

@@ -15,6 +15,8 @@ import axios from 'axios'
 import api from './fetch/api'
 // import router from './router'
 import Router from 'vue-router'
+import echarts from 'echarts'
+
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push (location) {
@@ -25,6 +27,7 @@ Vue.use(Vuex)
 Vue.use(ElementUI)
 Vue.prototype.api = api
 Vue.prototype.$http = axios
+Vue.prototype.$echarts = echarts
 
 // 前置拦截，任何界面在进入之前都会被该函数拦截，直到next()被执行才会进入界面
 router.beforeEach((to, from, next) => {

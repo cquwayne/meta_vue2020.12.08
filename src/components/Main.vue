@@ -5,8 +5,8 @@
         <Header></Header>
       </keep-alive>
     </el-header>
-    <el-container>
-      <el-aside>
+    <el-container id="container">
+      <el-aside id="navigation">
         <Navigation></Navigation>
       </el-aside>
       <el-container>
@@ -15,9 +15,9 @@
             <router-view></router-view>
           </keep-alive>
         </el-main>
-        <el-footer class="foot">
-          <Footer></Footer>
-        </el-footer>
+<!--        <el-footer class="foot">-->
+<!--          <Footer></Footer>-->
+<!--        </el-footer>-->
       </el-container>
     </el-container>
   </el-container>

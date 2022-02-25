@@ -46,7 +46,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="设备"
+          label="主要设备"
           width="180">
           <template slot-scope="scope" v-if="scope.row['inputFrameDataList']">
             <div v-for="item in scope.row['inputFrameDataList'][0]['deviceDataList']" :key="item.index" class="text item">

@@ -124,6 +124,26 @@ export default {
           ]
         },
         {
+          title: '数字孪生体库',
+          children: [
+            {
+              title: '孪生体模型',
+              icon: 'vcard-o',
+              name: '111'
+            },
+            {
+              title: '孪生体环境影响评价',
+              icon: 'users',
+              name: '222'
+            },
+            {
+              title: '铸造工艺动态环境影响评价',
+              icon: 'key',
+              name: '333'
+            }
+          ]
+        },
+        {
           title: '数据查询',
           name: 'Search'
         },
@@ -146,6 +166,10 @@ export default {
               name: 'UserPermission'
             }
           ]
+        },
+        {
+          title: '帮助中心',
+          icon: 'key',
         }
       ]
       return temp
